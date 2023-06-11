@@ -121,45 +121,46 @@ max_data_report = 10
 ```
 
 # The Business Context
-A Taiwan-based credit card issuer wants to better predict the likelihood of default for its customers, as well as identify the key drivers that determine this likelihood. This would inform the issuer's decisions on who to give a credit card to and what credit limit to provide. It would also help the issuer have a better understanding of their current and potential customers, which would inform their future strategy, including their planning of offering targeted credit products to their customers. 
 
+A Taiwan-based credit card issuer wants to better predict the likelihood of default for its customers, as well as identify the key drivers that determine this likelihood. This would inform the issuer's decisions on who to give a credit card to and what credit limit to provide. It would also help the issuer have a better understanding of their current and potential customers, which would inform their future strategy, including their planning of offering targeted credit products to their customers.
 
+<hr>
 
-<hr>\clearpage
+\clearpage
 
 # The Data
-(Data source: https://www.kaggle.com/uciml/default-of-credit-card-clients-dataset. We acknowledge the following:
-Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.)
+
+(Data source: <https://www.kaggle.com/uciml/default-of-credit-card-clients-dataset>. We acknowledge the following: Lichman, M. (2013). UCI Machine Learning Repository [<http://archive.ics.uci.edu/ml>]. Irvine, CA: University of California, School of Information and Computer Science.)
 
 The credit card issuer has gathered information on `r nrow(ProjectData)` customers. The dataset contains information on `r length(independent_variables)` variables, including demographic factors, credit data, history of payment, and bill statements of credit card customers from April 2005 to September 2005, as well as information on the outcome: did the customer default or not?
 
-Name                       | Description
-:--------------------------|:--------------------------------------------------------------------
-ID                         | ID of each client
-LIMIT_BAL                  | Amount of given credit in NT dollars (includes individual and family/supplementary credit)
-SEX                        | Gender (1=male, 2=female)
-EDUCATION                  | (1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown)
-MARRIAGE                   | Marital status (1=married, 2=single, 3=others)
-AGE                        | Age in years
-PAY_0                      | Repayment status in September, 2005 (-2=no consumption, -1=pay duly, 0=the use of revolving credit, 1=payment delay for one month, 2=payment delay for two months, ... 8=payment delay for eight months, 9=payment delay for nine months and above)
-PAY_2                      | Repayment status in August, 2005 (scale same as above)
-PAY_3                      | Repayment status in July, 2005 (scale same as above)
-PAY_4                      | Repayment status in June, 2005 (scale same as above)
-PAY_5                      | Repayment status in May, 2005 (scale same as above)
-PAY_6                      | Repayment status in April, 2005 (scale same as above)
-BILL_AMT1                  | Amount of bill statement in September, 2005 (NT dollar)
-BILL_AMT2                  | Amount of bill statement in August, 2005 (NT dollar)
-BILL_AMT3                  | Amount of bill statement in July, 2005 (NT dollar)
-BILL_AMT4                  | Amount of bill statement in June, 2005 (NT dollar)
-BILL_AMT5                  | Amount of bill statement in May, 2005 (NT dollar)
-BILL_AMT6                  | Amount of bill statement in April, 2005 (NT dollar)
-PAY_AMT1                   | Amount of previous payment in September, 2005 (NT dollar)
-PAY_AMT2                   | Amount of previous payment in August, 2005 (NT dollar)
-PAY_AMT3                   | Amount of previous payment in July, 2005 (NT dollar)
-PAY_AMT4                   | Amount of previous payment in June, 2005 (NT dollar)
-PAY_AMT5                   | Amount of previous payment in May, 2005 (NT dollar)
-PAY_AMT6                   | Amount of previous payment in April, 2005 (NT dollar)
-default.payment.next.month | Default payment (1=yes, 0=no)
+| Name                       | Description                                                                                                                                                                                                                                         |
+|:--------------------|:--------------------------------------------------|
+| ID                         | ID of each client                                                                                                                                                                                                                                   |
+| LIMIT_BAL                  | Amount of given credit in NT dollars (includes individual and family/supplementary credit)                                                                                                                                                          |
+| SEX                        | Gender (1=male, 2=female)                                                                                                                                                                                                                           |
+| EDUCATION                  | (1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown)                                                                                                                                                                    |
+| MARRIAGE                   | Marital status (1=married, 2=single, 3=others)                                                                                                                                                                                                      |
+| AGE                        | Age in years                                                                                                                                                                                                                                        |
+| PAY_0                      | Repayment status in September, 2005 (-2=no consumption, -1=pay duly, 0=the use of revolving credit, 1=payment delay for one month, 2=payment delay for two months, ... 8=payment delay for eight months, 9=payment delay for nine months and above) |
+| PAY_2                      | Repayment status in August, 2005 (scale same as above)                                                                                                                                                                                              |
+| PAY_3                      | Repayment status in July, 2005 (scale same as above)                                                                                                                                                                                                |
+| PAY_4                      | Repayment status in June, 2005 (scale same as above)                                                                                                                                                                                                |
+| PAY_5                      | Repayment status in May, 2005 (scale same as above)                                                                                                                                                                                                 |
+| PAY_6                      | Repayment status in April, 2005 (scale same as above)                                                                                                                                                                                               |
+| BILL_AMT1                  | Amount of bill statement in September, 2005 (NT dollar)                                                                                                                                                                                             |
+| BILL_AMT2                  | Amount of bill statement in August, 2005 (NT dollar)                                                                                                                                                                                                |
+| BILL_AMT3                  | Amount of bill statement in July, 2005 (NT dollar)                                                                                                                                                                                                  |
+| BILL_AMT4                  | Amount of bill statement in June, 2005 (NT dollar)                                                                                                                                                                                                  |
+| BILL_AMT5                  | Amount of bill statement in May, 2005 (NT dollar)                                                                                                                                                                                                   |
+| BILL_AMT6                  | Amount of bill statement in April, 2005 (NT dollar)                                                                                                                                                                                                 |
+| PAY_AMT1                   | Amount of previous payment in September, 2005 (NT dollar)                                                                                                                                                                                           |
+| PAY_AMT2                   | Amount of previous payment in August, 2005 (NT dollar)                                                                                                                                                                                              |
+| PAY_AMT3                   | Amount of previous payment in July, 2005 (NT dollar)                                                                                                                                                                                                |
+| PAY_AMT4                   | Amount of previous payment in June, 2005 (NT dollar)                                                                                                                                                                                                |
+| PAY_AMT5                   | Amount of previous payment in May, 2005 (NT dollar)                                                                                                                                                                                                 |
+| PAY_AMT6                   | Amount of previous payment in April, 2005 (NT dollar)                                                                                                                                                                                               |
+| default.payment.next.month | Default payment (1=yes, 0=no)                                                                                                                                                                                                                       |
 
 Let's look into the data for a few customers. This is how the first `r min(max_data_report, nrow(ProjectData))` out of the total of `r nrow(ProjectData)` rows look like (transposed, for convenience):
 
@@ -171,8 +172,9 @@ knitr::kable({
 })
 ```
 
-<hr>\clearpage
+<hr>
 
+\clearpage
 
 # A Process for Classification
 
@@ -180,24 +182,24 @@ knitr::kable({
 
 *There is no single best process* for classification. However, we have to start somewhere, so we will use the following process:
 
-1. Create an estimation sample and two validation samples by splitting the data into three groups. Steps 2-5 below will then be performed only on the estimation and the first validation data. You should only do step 6 once on the second validation data, also called **test data**, and only report/use the performance on that (second validation) data to make final business decisions. 
-2. Set up the dependent variable (as a categorical 0-1 variable; multi-class classification is also feasible, and similar, but we do not explore it in this note). 
-3. Make a preliminary assessment of the relative importance of the explanatory variables using visualization tools and simple descriptive statistics. 
-4. Estimate the classification model using the estimation data, and interpret the results.
-5. Assess the accuracy of classification in the first validation sample, possibly repeating steps 2-5 a few times changing the classifier in different ways to increase performance.
-6. Finally, assess the accuracy of classification in the second validation sample. You should eventually use and report all relevant performance measures and plots on this second validation sample only.
+1.  Create an estimation sample and two validation samples by splitting the data into three groups. Steps 2-5 below will then be performed only on the estimation and the first validation data. You should only do step 6 once on the second validation data, also called **test data**, and only report/use the performance on that (second validation) data to make final business decisions.
+2.  Set up the dependent variable (as a categorical 0-1 variable; multi-class classification is also feasible, and similar, but we do not explore it in this note).
+3.  Make a preliminary assessment of the relative importance of the explanatory variables using visualization tools and simple descriptive statistics.
+4.  Estimate the classification model using the estimation data, and interpret the results.
+5.  Assess the accuracy of classification in the first validation sample, possibly repeating steps 2-5 a few times changing the classifier in different ways to increase performance.
+6.  Finally, assess the accuracy of classification in the second validation sample. You should eventually use and report all relevant performance measures and plots on this second validation sample only.
 
 Let's follow these steps.
 
+## Step 1: Split the data
 
-## Step 1: Split the data 
-It is very important that you (or the data scientists working on the project) finally measure and report the performance of the models on **data that have not been used at all during the analysis, called "out-of-sample" or test data** (steps 2-5 above). The idea is that in practice we want our models to be used for predicting the class of observations/data we have not seen yet (i.e., "the future data"): although the performance of a classification method may be high in the data used to estimate the model parameters, it may be significantly poorer on data not used for parameter estimation, such as the **out-of-sample** (future) data. 
+It is very important that you (or the data scientists working on the project) finally measure and report the performance of the models on **data that have not been used at all during the analysis, called "out-of-sample" or test data** (steps 2-5 above). The idea is that in practice we want our models to be used for predicting the class of observations/data we have not seen yet (i.e., "the future data"): although the performance of a classification method may be high in the data used to estimate the model parameters, it may be significantly poorer on data not used for parameter estimation, such as the **out-of-sample** (future) data.
 
-This is why we split the data into an estimation sample and two validation samples  - using some kind of randomized splitting technique. The second validation data mimic out-of-sample data, and the performance on this validation set is a better approximation of the performance one should expect in practice from the selected classification method. The estimation data and the first validation data are used during steps 2-5 (with a few iterations of these steps), while the second validation data is only used once at the very end before making final business decisions based on the analysis. The split can be, for example, 80% estimation, 10% validation, and 10% test data, depending on the number of observations - for example, when there is a lot of data, you may only keep a few hundreds of them for the validation and test sets, and use the rest for estimation. 
+This is why we split the data into an estimation sample and two validation samples - using some kind of randomized splitting technique. The second validation data mimic out-of-sample data, and the performance on this validation set is a better approximation of the performance one should expect in practice from the selected classification method. The estimation data and the first validation data are used during steps 2-5 (with a few iterations of these steps), while the second validation data is only used once at the very end before making final business decisions based on the analysis. The split can be, for example, 80% estimation, 10% validation, and 10% test data, depending on the number of observations - for example, when there is a lot of data, you may only keep a few hundreds of them for the validation and test sets, and use the rest for estimation.
 
-While setting up the estimation and validation samples, you should also check that the same proportion of data from each class (i.e., customers who default versus not) are maintained in each sample. That is, you should maintain the same balance of the dependent variable categories as in the overall dataset. 
+While setting up the estimation and validation samples, you should also check that the same proportion of data from each class (i.e., customers who default versus not) are maintained in each sample. That is, you should maintain the same balance of the dependent variable categories as in the overall dataset.
 
-For simplicity, in this note we will not iterate steps 2-5. In practice, however, we should usually iterate steps 2-5 a number of times using the first validation sample each time, and at the end make our final assessment of the classification model using the test sample only once. 
+For simplicity, in this note we will not iterate steps 2-5. In practice, however, we should usually iterate steps 2-5 a number of times using the first validation sample each time, and at the end make our final assessment of the classification model using the test sample only once.
 
 ```{r echo=FALSE}
 if (random_sampling){
@@ -217,18 +219,17 @@ validation_data=ProjectData[validation_data_ids,]
 test_data=ProjectData[test_data_ids,]
 ```
 
-We typically refer to the three data samples as **estimation data** (`r estimation_data_percent`% of the data in our case), **validation data**  (`r validation_data_percent`% of the data) and **test data** (the remaining `r 100 - estimation_data_percent  -  validation_data_percent`% of the data).
+We typically refer to the three data samples as **estimation data** (`r estimation_data_percent`% of the data in our case), **validation data** (`r validation_data_percent`% of the data) and **test data** (the remaining `r 100 - estimation_data_percent  -  validation_data_percent`% of the data).
 
-In our case we use `r nrow(estimation_data)` observations in the estimation data, `r nrow(validation_data)` in the validation data, and `r nrow(test_data)` in the test data. 
-
-
+In our case we use `r nrow(estimation_data)` observations in the estimation data, `r nrow(validation_data)` in the validation data, and `r nrow(test_data)` in the test data.
 
 ## Step 2: Set up the dependent variable
-First, make sure the dependent variable is set up as a categorical 0-1 variable. In our illustrative example, we use the payment default (or no default) as the dependent variable. 
 
-The data however may not be always readily available with a categorical dependent variable. Suppose a retailer wants to understand what discriminates consumers who are  loyal versus those who are not. If they have data on the amount that customers spend in their store or the frequency of their purchases, they can create a categorical variable ("loyal vs. not loyal") by using a definition such as: "A loyal customer is one who spends more than X amount at the store and makes at least Y purchases a year". They can then code these loyal customers as "1" and the others as "0". They can choose the thresholds X and Y as they wish: a definition/decision that may have a big impact in the overall analysis. This decision can be the most crucial one of the whole data analysis: a wrong choice at this step may lead both to poor performance later as well as to no valuable insights. One should revisit the choice made at this step several times, iterating steps 2-3 and 2-5.
+First, make sure the dependent variable is set up as a categorical 0-1 variable. In our illustrative example, we use the payment default (or no default) as the dependent variable.
 
-> Carefully deciding what the dependent 0/1 variable is can be the most critical choice of a classification analysis. This decision typically depends on contextual knowledge and needs to be revisited multiple times throughout a data analytics project. 
+The data however may not be always readily available with a categorical dependent variable. Suppose a retailer wants to understand what discriminates consumers who are loyal versus those who are not. If they have data on the amount that customers spend in their store or the frequency of their purchases, they can create a categorical variable ("loyal vs. not loyal") by using a definition such as: "A loyal customer is one who spends more than X amount at the store and makes at least Y purchases a year". They can then code these loyal customers as "1" and the others as "0". They can choose the thresholds X and Y as they wish: a definition/decision that may have a big impact in the overall analysis. This decision can be the most crucial one of the whole data analysis: a wrong choice at this step may lead both to poor performance later as well as to no valuable insights. One should revisit the choice made at this step several times, iterating steps 2-3 and 2-5.
+
+> Carefully deciding what the dependent 0/1 variable is can be the most critical choice of a classification analysis. This decision typically depends on contextual knowledge and needs to be revisited multiple times throughout a data analytics project.
 
 In our data the number of 0/1's in our estimation sample is as follows:
 
@@ -246,8 +247,8 @@ rownames(class_percentages)<-"# of Observations"
 knitr::kable(class_percentages)
 ```
 
-
 ## Step 3: Simple Analysis
+
 Good data analytics start with good contextual knowledge as well as a simple statistical and visual exploration of the data. In the case of classification, one can explore "simple classifications" by assessing how the classes differ along any of the independent variables. For example, these are the statistics of our independent variables across the two classes in the estimation data, class 1 ("default"):
 
 ```{r echo=FALSE}
@@ -260,11 +261,11 @@ and class 0 ("no default"):
 knitr::kable(round(my_summary(estimation_data[estimation_data[,dependent_variable]==0,independent_variables]),2))
 ```
 
-The purpose of such an analysis by class is to get an initial idea about whether the classes are indeed separable as well as to understand which of the independent variables have most discriminatory power. 
+The purpose of such an analysis by class is to get an initial idea about whether the classes are indeed separable as well as to understand which of the independent variables have most discriminatory power.
 
 Notice however that
 
-> Even though each independent variable may not differ across classes, classification may still be feasible: a (linear or nonlinear) combination of independent variables may still be discriminatory. 
+> Even though each independent variable may not differ across classes, classification may still be feasible: a (linear or nonlinear) combination of independent variables may still be discriminatory.
 
 A simple visualization tool to assess the discriminatory power of the independent variables are the **box plots**. A box plot visually indicates simple summary statistics of an independent variable (e.g. mean, median, top and bottom quantiles, min, max, etc.). For example consider the box plots for our estimation data for the repayment status variables, for class 1
 
@@ -297,19 +298,20 @@ set_swatch(swatch.default)
 
 **Questions:**
 
-1. Draw the box plots for class 1 and class 0 for another set of independent variables of your choice.
-2. Which independent variables appear to have the most discriminatory power?
+1.  Draw the box plots for class 1 and class 0 for another set of independent variables of your choice.
+2.  Which independent variables appear to have the most discriminatory power?
 
 **Answers:**
 
-*
-*
+-   
 
+-   
 
 ## Step 4: Classification and Interpretation
-Once we decide which  dependent and independent variables to use (which can be revisited in later iterations), one can use a number of classification methods to develop a model that discriminates the different classes. 
 
-> Some of the widely used classification methods are:  classification and regression trees (CART), boosted trees, support vector machines, neural networks, nearest neighbors, logistic regression, lasso, random forests, deep learning methods, etc.
+Once we decide which dependent and independent variables to use (which can be revisited in later iterations), one can use a number of classification methods to develop a model that discriminates the different classes.
+
+> Some of the widely used classification methods are: classification and regression trees (CART), boosted trees, support vector machines, neural networks, nearest neighbors, logistic regression, lasso, random forests, deep learning methods, etc.
 
 ```{r echo=FALSE, results='asis'}
 cat("In this report we consider only the following classification methods:",paste(Reduce(paste,sapply(head(which(methods_short==1),-1), function(i) paste(names_of_methods_short[i],",",sep=""))),paste(names_of_methods_short[tail(which(methods_short==1),1)],".",sep=""),sep=" "), "Understanding how these methods work is beyond the scope of this note - there are many references available online for all these classification methods.")
@@ -367,8 +369,6 @@ knitr::kable(head(t(round(Classification_Table,2)), max_data_report)) #t(x) retu
 cat("The default decision is to classify each observation in the group with the highest probability - but one can change this choice.")
 ```
 
-
-
 ```{r echo=FALSE, eval=reg_logreg, results='asis'}
 cat("**Regularized Logistic Regression**
 
@@ -403,7 +403,7 @@ knitr::kable(log_reg_coefficients)
 ```{r echo=FALSE, eval=reg_logreg, results='asis'}
 cat("The estimated probability that a validation observation belongs to class 1 (e.g., the estimated probability that the customer defaults) for the first few validation observations, using regularized logistic regression above, is:")
 ```
-  
+
 ```{r echo=FALSE}
 if (reg_logreg){
 # Let's get the probabilities for the 3 types of data from the regularized logistic regression
@@ -427,8 +427,6 @@ knitr::kable(head(t(round(Classification_Table,2)), max_data_report)) #t(x) retu
 ```{r echo=FALSE, eval=cart, results='asis'}
 cat('The table above assumes that the **probability threshold** for considering an observation as "class 1" is ', Probability_Threshold, '.') 
 ```
-
-
 
 ```{r echo=FALSE, eval=cart, results='asis'}
 cat("**CART**
@@ -523,9 +521,8 @@ knitr::kable(head(t(round(Classification_Table,2)), max_data_report))
 cat('The table above assumes that the **probability threshold** for considering an observation as "class 1" is ', Probability_Threshold, '.') 
 ```
 
-
-
 <!-- **Random Forest:** -->
+
 ```{r echo=FALSE}
 # model_forest <- randomForest(x=estimation_data[,independent_variables],y=estimation_data[,dependent_variable], importance=TRUE, proximity=TRUE, type="classification")
 # 
@@ -545,8 +542,6 @@ cat('The table above assumes that the **probability threshold** for considering 
 # 
 # knitr::kable(head(t(round(Classification_Table,2)), max_data_report)) #t(x) returns the transpose of x
 ```
-
-
 
 ```{r echo=FALSE, eval=XGBoost, results='asis'}
 cat("**XGBoost**
@@ -588,10 +583,9 @@ knitr::kable(head(t(round(Classification_Table,2)), max_data_report)) #t(x) retu
 }
 ```
 
-
-
 ## Step 5: Validation accuracy
-Using the predicted class probabilities of the validation data, as outlined above, we can  generate some measures of classification performance. Before discussing them, note that given the probability an observation belongs to a class, **a reasonable class prediction choice is to predict the class that has the highest probability**. However, this does not need to be the only choice in practice.
+
+Using the predicted class probabilities of the validation data, as outlined above, we can generate some measures of classification performance. Before discussing them, note that given the probability an observation belongs to a class, **a reasonable class prediction choice is to predict the class that has the highest probability**. However, this does not need to be the only choice in practice.
 
 > Selecting the probability threshold based on which we predict the class of an observation is a decision the user needs to make. While in some cases a reasonable probability threshold is 50%, in other cases it may be 99.9% or 0.1%.
 
@@ -601,11 +595,12 @@ Can you think of such a scenario?
 
 **Answer:**
 
-*
+-   
 
 For different choices of the probability threshold, one can measure a number of classification performance metrics, which are outlined next.
 
-### 1.  Hit ratio
+### 1. Hit ratio
+
 This is the percentage of the observations that have been correctly classified (i.e., the predicted class and the actual class are the same). We can just count the number of the validation data correctly classified and divide this number with the total number of the validation data, using the two CART and the logistic regression above. These are as follows for probability threshold `r Probability_Threshold*100`%:
 
 ```{r echo=FALSE}
@@ -630,6 +625,7 @@ knitr::kable(validation_hit_rates)
 ```
 
 For the estimation data, the hit rates are:
+
 ```{r echo=FALSE}
 estimation_actual=estimation_data[,dependent_variable]
 estimation_predictions = rbind(estimation_prediction_class_log,
@@ -652,10 +648,11 @@ rownames(estimation_hit_rates) <- names_of_methods[which(methods==1)]
 knitr::kable(estimation_hit_rates)
 ```
 
-A simple benchmark to compare the hit ratio performance of a classification model against is the **Maximum Chance Criterion**. This measures the proportion of the class with the largest size. For our validation data the largest group is customers who do not default: `r sum(!validation_actual)` out of `r length(validation_actual)` customers). Clearly, if we classified all individuals into the largest group, we could get a hit ratio of `r round(100*sum(!validation_actual)/length(validation_actual), 2)`% without doing any work. One should have a hit rate of at least as much as the Maximum Chance Criterion rate, although as we discuss next there are more performance criteria to consider. 
+A simple benchmark to compare the hit ratio performance of a classification model against is the **Maximum Chance Criterion**. This measures the proportion of the class with the largest size. For our validation data the largest group is customers who do not default: `r sum(!validation_actual)` out of `r length(validation_actual)` customers). Clearly, if we classified all individuals into the largest group, we could get a hit ratio of `r round(100*sum(!validation_actual)/length(validation_actual), 2)`% without doing any work. One should have a hit rate of at least as much as the Maximum Chance Criterion rate, although as we discuss next there are more performance criteria to consider.
 
 ### 2. Confusion matrix
-The confusion matrix shows for each class the number (or percentage) of the  data that are correctly classified for that class. For example, for the method above with the highest hit rate in the validation data (among logistic regression and the 2 CART models), and for probability threshold `r Probability_Threshold*100`%, the confusion matrix for the validation data is:
+
+The confusion matrix shows for each class the number (or percentage) of the data that are correctly classified for that class. For example, for the method above with the highest hit rate in the validation data (among logistic regression and the 2 CART models), and for probability threshold `r Probability_Threshold*100`%, the confusion matrix for the validation data is:
 
 ```{r echo=FALSE}
 validation_prediction_best = validation_predictions[which.max(validation_hit_rates),]
@@ -673,20 +670,20 @@ knitr::kable(conf_matrix)
 
 **Questions:**
 
-1. Note that the percentages add up to 100% for each row. Why?
-2. Moreover, a "good" confusion matrix should have large diagonal values and small off-diagonal ones. Why?
+1.  Note that the percentages add up to 100% for each row. Why?
+2.  Moreover, a "good" confusion matrix should have large diagonal values and small off-diagonal ones. Why?
 
 **Answers:**
 
-*
-*
+-   
 
-
+-   
 
 ### 3. ROC curve
-Remember that each observation is classified by our model according to the probabilities Pr(0) and Pr(1) and a chosen probability threshold. Typically we set the probability threshold to 0.5 - so that observations for which Pr(1) > 0.5 are classified as 1's. However, we can vary this threshold, for example if we are interested in correctly predicting all 1's but do not mind missing some 0's (and vice-versa).
 
-When we change the probability threshold we get different values of hit rate, false positive and false negative rates, or any other performance metric. We can plot for example how the false positive versus true positive rates change as we alter the probability threshold, and generate the so called ROC curve. 
+Remember that each observation is classified by our model according to the probabilities Pr(0) and Pr(1) and a chosen probability threshold. Typically we set the probability threshold to 0.5 - so that observations for which Pr(1) \> 0.5 are classified as 1's. However, we can vary this threshold, for example if we are interested in correctly predicting all 1's but do not mind missing some 0's (and vice-versa).
+
+When we change the probability threshold we get different values of hit rate, false positive and false negative rates, or any other performance metric. We can plot for example how the false positive versus true positive rates change as we alter the probability threshold, and generate the so called ROC curve.
 
 The ROC curves for the validation data for the logistic regression as well as both the CARTs above are as follows:
 
@@ -735,24 +732,26 @@ df.all <- do.call(rbind, lapply(list_of_df[which(methods==1)], function(df) {
 ggplot(df.all, aes(x=`False Positive rate`, y=value, colour=variable)) + scale_colour_manual(values = c("cyan", "blue", "dark green","darkred","coral")) + geom_line() + ylab("True Positive rate") + geom_abline(intercept = 0, slope = 1,linetype="dotted",colour="green")
 ```
 
-How should a good ROC curve look like? A rule of thumb in assessing ROC curves is that the "higher" the curve (i.e., the closer it gets to the point with coordinates (0,1)), hence the larger the area under the curve, the better. You may also select one point on the ROC curve (the "best one" for our purpose) and use that false positive/false negative performances (and corresponding threshold for P(1)) to assess your model. 
+How should a good ROC curve look like? A rule of thumb in assessing ROC curves is that the "higher" the curve (i.e., the closer it gets to the point with coordinates (0,1)), hence the larger the area under the curve, the better. You may also select one point on the ROC curve (the "best one" for our purpose) and use that false positive/false negative performances (and corresponding threshold for P(1)) to assess your model.
 
 **Questions:**
 
-1. Which point on the ROC would you select?
-2. What classifier does the dotted 45-degree line correspond to? How does the ROC plot above showcase that the classifiers used here are superior to such classifier?
+1.  Which point on the ROC would you select?
+2.  What classifier does the dotted 45-degree line correspond to? How does the ROC plot above showcase that the classifiers used here are superior to such classifier?
 
 **Answers:**
 
-*
-*
+-   
+
+-   
 
 ### 4. Gains chart
-The gains chart is a popular technique in certain applications, such as direct marketing or credit risk. 
 
-For a concrete example, consider the case of a direct marketing mailing campaign. Say we have a classifier that attempts to identify the likely responders by assigning each case a probability of response. We may want to select as few cases as possible and still capture the maximum number of responders possible. 
+The gains chart is a popular technique in certain applications, such as direct marketing or credit risk.
 
-We can measure the percentage of all responses the classifier captures if we only select, say, x% of cases: the top x% in terms of the probability of response assigned by our classifier. For each percentage of cases we select (x), we can plot the following point: the x-coordinate will be the percentage of all cases that were selected, while the y-coordinate will be the percentage of all class 1 cases that were captured within the selected cases (i.e., the ratio true positives/positives of the classifier, assuming the classifier predicts class 1 for all the selected cases, and predicts class 0 for all the remaining cases). If we plot these points while we change the percentage of cases we select (x) (i.e., while we change the probability threshold of the classifier), we get a chart that is called the **gains chart**. 
+For a concrete example, consider the case of a direct marketing mailing campaign. Say we have a classifier that attempts to identify the likely responders by assigning each case a probability of response. We may want to select as few cases as possible and still capture the maximum number of responders possible.
+
+We can measure the percentage of all responses the classifier captures if we only select, say, x% of cases: the top x% in terms of the probability of response assigned by our classifier. For each percentage of cases we select (x), we can plot the following point: the x-coordinate will be the percentage of all cases that were selected, while the y-coordinate will be the percentage of all class 1 cases that were captured within the selected cases (i.e., the ratio true positives/positives of the classifier, assuming the classifier predicts class 1 for all the selected cases, and predicts class 0 for all the remaining cases). If we plot these points while we change the percentage of cases we select (x) (i.e., while we change the probability threshold of the classifier), we get a chart that is called the **gains chart**.
 
 In the credit card default case we are studying, the gains charts for the validation data for our classifiers are the following:
 
@@ -848,9 +847,9 @@ Why?
 
 **Answer:**
 
-*
+-   
 
-So how should a good gains chart look like? The further above this 45-degree reference line our gains curve is, the better the "gains". Moreover, much like for the ROC curve, one can select the percentage of all cases examined appropriately so that any point of the gains curve is selected. 
+So how should a good gains chart look like? The further above this 45-degree reference line our gains curve is, the better the "gains". Moreover, much like for the ROC curve, one can select the percentage of all cases examined appropriately so that any point of the gains curve is selected.
 
 **Question:**
 
@@ -858,20 +857,21 @@ Which point on the gains curve should we select in practice?
 
 **Answer:**
 
-*
+-   
 
 ### 5. Profit curve
-Finally, we can generate the so called profit curve, which we often use to make our final decisions. The intuition is as follows. Consider a direct marketing campaign, and suppose it costs $1 to send an advertisement, and the expected profit from a person who responds positively is $45. Suppose you have a database of 1 million people to whom you could potentially send the promotion. Typical response rates are 0.05%. What fraction of the 1 million people should you send the promotion to? 
+
+Finally, we can generate the so called profit curve, which we often use to make our final decisions. The intuition is as follows. Consider a direct marketing campaign, and suppose it costs \$1 to send an advertisement, and the expected profit from a person who responds positively is \$45. Suppose you have a database of 1 million people to whom you could potentially send the promotion. Typical response rates are 0.05%. What fraction of the 1 million people should you send the promotion to?
 
 To answer this type of questions, we need to create the **profit curve**. We can measure some measure of profit if we only select the top cases in terms of the probability of response assigned by our classifier. We can plot the profit curve by changing, as we did for the gains chart, the percentage of cases we select, and calculating the corresponding total **estimated profit** (or loss) we would generate. This is simply equal to:
 
 > Total Estimated Profit = (% of 1's correctly predicted)x(value of capturing a 1) + (% of 0's correctly predicted)x(value of capturing a 0) + (% of 1's incorrectly predicted as 0)x(cost of missing a 1) + (% of 0's incorrectly predicted as 1)x(cost of missing a 0)
-> 
-> Calculating the expected profit requires we have an estimate of the four costs/values: the value of capturing a 1 or a 0, and the cost of misclassifying a 1 into a 0 or vice versa. 
+>
+> Calculating the expected profit requires we have an estimate of the four costs/values: the value of capturing a 1 or a 0, and the cost of misclassifying a 1 into a 0 or vice versa.
 
-Given the values and costs of correct classifications and misclassifications, we can plot the total estimated profit (or loss) as we change the percentage of cases we select, i.e., the probability threshold of the classifier, like we did for the ROC and the gains chart. 
+Given the values and costs of correct classifications and misclassifications, we can plot the total estimated profit (or loss) as we change the percentage of cases we select, i.e., the probability threshold of the classifier, like we did for the ROC and the gains chart.
 
-In our credit card default case, we consider the following business profit and loss to the credit card issuer for the correctly classified and misclassified customers: 
+In our credit card default case, we consider the following business profit and loss to the credit card issuer for the correctly classified and misclassified customers:
 
 ```{r echo=FALSE}
 knitr::kable(Profit_Matrix)
@@ -987,7 +987,7 @@ df.all <- do.call(rbind, lapply(list_of_frames[which(methods==1)], function(df) 
 ggplot(df.all, aes(x=`% of validation data selected`, y=value, colour=variable)) + scale_colour_manual(values = c("cyan", "blue", "dark green","darkred","coral")) + geom_line() + ylab("Estimated profit")
 ```
 
-We can then select the percentage of selected cases that corresponds to the maximum estimated profit (or minimum loss, if necessary). 
+We can then select the percentage of selected cases that corresponds to the maximum estimated profit (or minimum loss, if necessary).
 
 **Question:**
 
@@ -995,14 +995,13 @@ Which point on the profit curve would you select in practice?
 
 **Answer:**
 
-*
+-   
 
-Notice that to maximize estimated profit, we need to have the cost/profit for each of the four cases! This can be difficult to assess, hence typically we want to do a sensitivity analysis to our assumptions about the cost/profit. For example, we can generate different profit curves (i.e., worst case, best case, average case scenarios) and see how much the best profit we get varies, and most importantly **how our selection of the classification model and of the probability threshold corresponding to the best profit vary**, as the classifier and the percentage of cases are what we need to decide on eventually. 
-
-
+Notice that to maximize estimated profit, we need to have the cost/profit for each of the four cases! This can be difficult to assess, hence typically we want to do a sensitivity analysis to our assumptions about the cost/profit. For example, we can generate different profit curves (i.e., worst case, best case, average case scenarios) and see how much the best profit we get varies, and most importantly **how our selection of the classification model and of the probability threshold corresponding to the best profit vary**, as the classifier and the percentage of cases are what we need to decide on eventually.
 
 ## Step 6. Test Accuracy
-Having iterated steps 2-5 until we are satisfied with the performance of our selected model on the validation data, in this step the performance analysis outlined in step 5 needs to be done with the test sample. This is the performance that best mimics what one should expect in practice upon deployment of the classification solution, **assuming (as always) that the data used for this performance analysis are representative of the situation in which the solution will be deployed.** 
+
+Having iterated steps 2-5 until we are satisfied with the performance of our selected model on the validation data, in this step the performance analysis outlined in step 5 needs to be done with the test sample. This is the performance that best mimics what one should expect in practice upon deployment of the classification solution, **assuming (as always) that the data used for this performance analysis are representative of the situation in which the solution will be deployed.**
 
 Let's see in our case how the **hit ratio, confusion matrix, ROC curve, gains chart, and profit curve** look like for our test data. For the hit ratio and the confusion matrix we use `r Probability_Threshold*100`% as the probability threshold for classification.
 
@@ -1265,15 +1264,17 @@ ggplot(df.all, aes(x=`% of test data selected`, y=value, colour=variable)) + sca
 
 **Questions:**
 
-1. Is the performance in the test data similar to the performance in the validation data above? Should we expect the performance of our classification model to be close to that in our test data when we deploy the model in practice? Why or why not? What should we do if they are different?
-2. Make a final assessment about what classifier you would use (out of the ones considered here) for this credit card default classification business problem, with what percentage of cases/probability threshold, and why. What is the business profit the company can achieve (as measured with the test data) based on your solution?
-3. How does your assessment depend on the values and costs of correct classifications and misclassifications (`r actual_1_predict_1`, `r actual_1_predict_0`, `r actual_0_predict_1`, `r actual_0_predict_0`)?
-4. What business decisions can the credit card issuer make based on this analysis?
-
+1.  Is the performance in the test data similar to the performance in the validation data above? Should we expect the performance of our classification model to be close to that in our test data when we deploy the model in practice? Why or why not? What should we do if they are different?
+2.  Make a final assessment about what classifier you would use (out of the ones considered here) for this credit card default classification business problem, with what percentage of cases/probability threshold, and why. What is the business profit the company can achieve (as measured with the test data) based on your solution?
+3.  How does your assessment depend on the values and costs of correct classifications and misclassifications (`r actual_1_predict_1`, `r actual_1_predict_0`, `r actual_0_predict_1`, `r actual_0_predict_0`)?
+4.  What business decisions can the credit card issuer make based on this analysis?
 
 **Answers:**
 
-*
-*
-*
-*
+-   
+
+-   
+
+-   
+
+-   
