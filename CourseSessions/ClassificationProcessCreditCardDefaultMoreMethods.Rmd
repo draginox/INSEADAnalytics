@@ -107,13 +107,15 @@ class_0_interpretation = "no default"
 
 # Please ENTER the profit/cost values for correctly classified and misclassified data:
 actual_1_predict_1 = 0
-actual_1_predict_0 = -100000
-actual_0_predict_1 = 0
-actual_0_predict_0 = 20000
+actual_1_predict_0 = -5000
+actual_0_predict_1 = -1500
+actual_0_predict_0 = 1500
 
 Profit_Matrix = matrix(c(actual_1_predict_1, actual_0_predict_1, actual_1_predict_0, actual_0_predict_0), ncol=2)
 colnames(Profit_Matrix) <- c(paste("Predict 1 (", class_1_interpretation, ")", sep = ""), paste("Predict 0 (", class_0_interpretation, ")", sep = ""))
 rownames(Profit_Matrix) <- c(paste("Actual 1 (", class_1_interpretation, ")", sep = ""), paste("Actual 0 (", class_0_interpretation, ")", sep = ""))
+
+print(Profit_Matrix)
 
 # Please ENTER the maximum number of observations to show in the report and slides 
 # (DEFAULT is 50. If the number is large the report and slides may not be generated - very slow or will crash!!)
@@ -135,7 +137,7 @@ A Taiwan-based credit card issuer wants to better predict the likelihood of defa
 The credit card issuer has gathered information on `r nrow(ProjectData)` customers. The dataset contains information on `r length(independent_variables)` variables, including demographic factors, credit data, history of payment, and bill statements of credit card customers from April 2005 to September 2005, as well as information on the outcome: did the customer default or not?
 
 | Name                       | Description                                                                                                                                                                                                                                         |
-|:--------------------|:--------------------------------------------------|
+|:---------------------|:-------------------------------------------------|
 | ID                         | ID of each client                                                                                                                                                                                                                                   |
 | LIMIT_BAL                  | Amount of given credit in NT dollars (includes individual and family/supplementary credit)                                                                                                                                                          |
 | SEX                        | Gender (1=male, 2=female)                                                                                                                                                                                                                           |
