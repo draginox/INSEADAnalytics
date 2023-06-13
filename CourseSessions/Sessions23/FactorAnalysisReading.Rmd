@@ -212,6 +212,9 @@ colnames(thecor)<-colnames(ProjectDataFactor)
 rownames(thecor)<-colnames(ProjectDataFactor)
 
 knitr::kable(round(thecor,2))
+
+## NOTES
+# if you see abs(correlation)>0.5 - you should think about it closely
 ```
 
 
@@ -244,11 +247,25 @@ Variance_Explained_Table_results<-PCA(ProjectDataFactor, graph=FALSE)
 Variance_Explained_Table<-Variance_Explained_Table_results$eig
 Variance_Explained_Table_copy<-Variance_Explained_Table
 
+## NOTES
+# eigenvalue is SUM(# of inputs) = # of inputs (i.e., 7)
+# when you check component 1 eigenvalue / sum of total eigenvalues = %age of explained var
+# do you need to use non-collinear methods to start?
+# no, BUT in this case we are ASSUMING that the inputs are non-collinear
+
 
 rownames(Variance_Explained_Table) <- paste("Component", 1:nrow(Variance_Explained_Table))
 colnames(Variance_Explained_Table) <- c("Eigenvalue", "Pct of explained variance", "Cumulative pct of explained variance")
 
 knitr::kable(round(Variance_Explained_Table, 2))
+
+## NOTES
+# what is the stopping point for the components that you keep vs discard? 
+# we are trying to balance, but how? Three ways, BUT check with biz rule & common sense:
+# 1) Pick the components with eigenvalue > 1 ==> punch above weight
+# 2) Managerial requirement for how much variance you want explained ==> don't care beyond X
+# 3) Scree plot: stop to the left of elbow in scree plot (marginal contrib is small after X)
+# COMBINE all of these with intuition and judgment to select
 ```
 
 Note that the "first principal component" has the highest eigenvalue and captures most of the information (variance in this case) of the original raw data. As a rule of thumb, every component with eigenvalue more than 1 "has more information that the average original raw attribute". Typically one uses only these factors, although what is also important to consider is "what total percentage of the variance in the original data is kept when one replaces the original data/attributes with the selected factors/components".
@@ -291,7 +308,8 @@ In practice one would like to have derived variables that use only a few of the 
 For our data, the `r factors_selected` selected factors look as follows after the `r rotation_used` rotation: 
 
 ```{r}
-
+## NOTES
+# Varimax tends to do reasonably well
 Rotated_Results<-principal(ProjectDataFactor, nfactors=max(factors_selected), rotate=rotation_used,score=TRUE)
 Rotated_Factors<-round(Rotated_Results$loadings,2)
 Rotated_Factors<-as.data.frame(unclass(Rotated_Factors)) #unclass returns a copy of its argument with its class information removed
@@ -301,6 +319,9 @@ sorted_rows <- sort(Rotated_Factors[,1], decreasing = TRUE, index.return = TRUE)
 Rotated_Factors <- Rotated_Factors[sorted_rows,]
 
 knitr::kable(Rotated_Factors)
+
+## NOTE
+# Component 1 and Component 2 outputs note the amount of weight on that variable specifically
 ```
 
 To better visualize and interpret the factors we often "supress" loadings with small values, e.g. with absolute values smaller than `r MIN_VALUE`. In this case our factors look as follows after suppressing the small numbers:
@@ -312,6 +333,14 @@ colnames(Rotated_Factors_thres)<- colnames(Rotated_Factors)
 rownames(Rotated_Factors_thres)<- rownames(Rotated_Factors)
 
 knitr::kable(Rotated_Factors_thres)
+
+## NOTES
+# no change to the values, just suppressed some low loading values
+# communication loads on both components
+# useful properties of PCA:
+# 1) each component loads on SOME of the originally provided features
+# 2) each original feature only factors into ONE* component
+# 3) each component is separable from the other (DOUBLE CHECK THIS)
 ```
 
 Notice that after rotation each factor combines (we say "loads on") only a few of the original raw attributes, making interpretation easier. For example, if we only select the factors with eigenvalue more than 1, in this case we would select `r sum(eigenvalues>=1)` factors.
@@ -342,6 +371,9 @@ NEW_ProjectData <- round(Rotated_Results$scores[,1:factors_selected,drop=F],2) #
 colnames(NEW_ProjectData)<-paste("Derived Variable (Factor)",1:ncol(NEW_ProjectData),sep=" ")
 
 knitr::kable(NEW_ProjectData[1:min(max_data_report,nrow(NEW_ProjectData)), , drop=F])
+
+## NOTES
+# We now only have 2 columns instead of 7, woohoo!
 ```
 
 Can you describe the observations using the new derived variables? How does each person perform for each of the selected factors?

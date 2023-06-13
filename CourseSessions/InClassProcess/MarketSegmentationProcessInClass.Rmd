@@ -350,12 +350,19 @@ A key family of methods used for segmentation is what is called **clustering met
 # Please use numbers, not column names, e.g. c(1:5, 7, 8) uses columns 1,2,3,4,5,7,8
 segmentation_attributes_used = c(28,25,27,14,20,8,3,12,13,5,9,11,2,30,24) #c(10,19,5,12,3) 
 
+## NOTES
+# After PCA, we find a bunch of variables that are Principal Components
+# Use the highest factor loading in each PrinComp and let that be the one of the segmentation_attributes_used ^^
+
 # Please ENTER then original raw attributes to use for the profiling of the segments (the "profiling attributes")
 # Please use numbers, not column names, e.g. c(1:5, 7, 8) uses columns 1,2,3,4,5,7,8
 profile_attributes_used = c(2:82) 
 
 # Please ENTER the number of clusters to eventually use for this report
 numb_clusters_used = 7 # for boats possibly use 5, for Mall_Visits use 3
+
+## NOTES
+# let the elbow rule help with # clusters above ^
 
 # Please enter the method to use for the segmentation:
 profile_with = "hclust" #  "hclust" or "kmeans"
@@ -367,6 +374,8 @@ distance_used = "euclidean"
 
 # Please ENTER the hierarchical clustering method to use (options are:
 # "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median" or "centroid").
+## NOTES
+# this is the criterion for distance BETWEEN groups
 # DEFAULT is "ward"
 hclust_method = "ward.D2"
 
@@ -436,6 +445,8 @@ We need to select the clustering method to use, as well as the number of cluster
 ```{r}
 Hierarchical_Cluster_distances <- dist(ProjectData_segment, method=distance_used)
 Hierarchical_Cluster <- hclust(Hierarchical_Cluster_distances, method=hclust_method)
+## NOTES
+# method = hclust_method depends on which method you selected!
 # Display dendogram
 iplot.dendrogram(Hierarchical_Cluster)
 # TODO: Draw dendogram with red borders around the 3 clusters
@@ -448,12 +459,18 @@ num <- nrow(ProjectData) - 1
 df1 <- cbind(as.data.frame(Hierarchical_Cluster$height[length(Hierarchical_Cluster$height):1]), c(1:num))
 colnames(df1) <- c("distances","index")
 iplot.df(melt(head(df1, 20), id="index"), xlab="Number of Components")
+
+## NOTES
+# in the height plot, you start on the right hand side and keep walking to the left UNTIL you have an elbow - 5 and 4 as an example (lots of cost moving from 5 to 4); pick 5 in this case
+# could be 8 to 7 as well! Have to iterate A LOT
 ```
 
 Here is the segment membership of the first `r max_data_report` respondents if we use hierarchical clustering:
 
 ```{r}
 cluster_memberships_hclust <- as.vector(cutree(Hierarchical_Cluster, k=numb_clusters_used)) # cut tree into as many clusters as numb_clusters_used
+## NOTES
+# numb_clusters_used is where you MANUALLY select the number of clusters you want
 cluster_ids_hclust=unique(cluster_memberships_hclust)
 
 ProjectData_with_hclust_membership <- cbind(1:length(cluster_memberships_hclust),cluster_memberships_hclust)
