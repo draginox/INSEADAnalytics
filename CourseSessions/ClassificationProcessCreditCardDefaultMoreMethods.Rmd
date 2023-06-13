@@ -137,7 +137,7 @@ A Taiwan-based credit card issuer wants to better predict the likelihood of defa
 The credit card issuer has gathered information on `r nrow(ProjectData)` customers. The dataset contains information on `r length(independent_variables)` variables, including demographic factors, credit data, history of payment, and bill statements of credit card customers from April 2005 to September 2005, as well as information on the outcome: did the customer default or not?
 
 | Name                       | Description                                                                                                                                                                                                                                         |
-|:---------------------|:-------------------------------------------------|
+|:---------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ID                         | ID of each client                                                                                                                                                                                                                                   |
 | LIMIT_BAL                  | Amount of given credit in NT dollars (includes individual and family/supplementary credit)                                                                                                                                                          |
 | SEX                        | Gender (1=male, 2=female)                                                                                                                                                                                                                           |
@@ -344,7 +344,7 @@ knitr::kable(log_coefficients)
 ```
 
 ```{r echo=FALSE, eval=logreg, results='asis'}
-cat("The estimated probability that a validation observation belongs to class 1 (e.g., the estimated probability that the customer defaults) for the first few validation observations, using the logistic regression above, is:")
+  cat("The estimated probability that a validation observation belongs to class 1 (e.g., the estimated probability that the customer defaults) for the first few validation observations, using the logistic regression above, is:")
 ```
 
 ```{r echo=FALSE}
